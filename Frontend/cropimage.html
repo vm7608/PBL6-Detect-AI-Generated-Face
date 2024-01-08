@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="css/now-ui-kit.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <title>AI or Not</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="assets/menuIcon.svg" width="20px" height="20px" style="max-width: none !important;">
+    </button>
+    <img src="images/logoMBH.png" width="60" height="60">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="file:///C:/Users/HP/M%C3%A1y%20t%C3%ADnh/WebAIGeneratedFaceDetection/src/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="loader-container" id="loadingcontainer">
+    <div class="loader"></div>
+    <div class="processing-text">Processing...</div>
+</div>
+
+<div class="image">
+    <img id="resultImage" src=""/>
+</div>
+
+<main class="page" id="crop">
+   <div class="box-2">
+       <div class="result"></div>
+   </div>
+   <div class="box-2 img-result hide">
+        <img class="cropped" src="" alt="" id="croppedImage">
+        <div class="fixed-crop-box"></div>
+    </div>
+   <div class="box" id="box">
+       <div class="options hide"></div>
+       <button class="btn save hide">Save</button>
+       <a href="" class="btn download hide" id="nextBtn">Next</a>
+   </div>
+</main>
+
+<div class="page_end">
+    <div class="start">
+        <div class="card">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="bot-footer">
+            <img src="images/logoMBH.png" width="150"><br />
+            Copyright © [JACK97] - 2023
+        </div><br/>
+        <div class="nouridio">website designed by <a href="https://cdn.tuoitre.vn/471584752817336320/2023/8/13/f3xiqfpw4aeo-vo-1691881627442514206495-232-0-1306-1718-crop-1691881638057571163265.jpg"> Nobody</a></div>
+    </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js'></script>
+<script>
+    // vars
+    let result = document.querySelector('.result'),
+    img_result = document.querySelector('.img-result'),
+    img_w = document.querySelector('.img-w'),
+    img_h = document.querySelector('.img-h'),
+    options = document.querySelector('.options'),
+    save = document.querySelector('.save'),
+    cropped = document.querySelector('.cropped'),
+    dwn = document.querySelector('.download'),
+    upload = document.querySelector('#file-input'),
+    cropper = '';
+
+    // // save on click
+    save.addEventListener('click', e => {
+    e.preventDefault();
+    imgSrc = cropper.getCroppedCanvas().toBlob(blob => {
+        const croppedFile = new File([blob], 'cropped-image.png', { type: 'image/png' });
+        cropped.classList.remove('hide');
+        img_result.classList.remove('hide');
+        cropped.src = URL.createObjectURL(croppedFile);
+    }, 'image/png');
+    cropped.classList.remove('hide');
+    img_result.classList.remove('hide');
+    cropped.src = imgSrc;
+    dwn.classList.remove('hide');
+    });
+
+    // Lấy ảnh và kích thước từ localStorage
+    const base64Image = localStorage.getItem('image');
+    const width = localStorage.getItem('width');
+    const height = localStorage.getItem('height');
+    // const url = localStorage.getItem('url');
+    const url_image = localStorage.getItem('url_image');
+    
+
+    console.log(width);
+    console.log(height);
+    console.log(url_image);
+    if (base64Image) {     
+        let img = document.createElement('img');
+        img.id = 'image';
+        img.src = base64Image;
+        // clean result before
+        result.innerHTML = '';
+        // append new image
+        result.appendChild(img);
+        // show save btn and options
+        save.classList.remove('hide');
+        options.classList.remove('hide');
+        // init cropper
+        cropper = new Cropper(img, {
+            aspectRatio: 1,
+            autoCropArea: 1,
+            dragMode: 'none', // Ngăn chặn kéo thả bằng tay
+            cropBoxResizable: false, // Ngăn chặn thay đổi kích thước của crop box
+        });
+        console.log(img.width);
+        console.log(img.height);
+
+
+        const minSize = Math.min(width, height);
+        console.log(minSize);
+        cropper.setCropBoxData({ width: minSize, height: minSize });
+        // cropper.setCropBoxData({ width: 512, height: 512 });
+
+        localStorage.removeItem('image');
+        // localStorage.removeItem('url');
+        localStorage.removeItem('width');
+        localStorage.removeItem('height');
+    } else if(url_image) {
+        const resultImage = document.getElementById('resultImage');
+
+        displayImage(url_image, resultImage);
+        localStorage.removeItem('url_image');
+        localStorage.removeItem('width');
+        localStorage.removeItem('height');
+    }
+
+    dwn.addEventListener('click', async e => {
+        e.preventDefault();
+        const imgElement = document.getElementById('croppedImage');
+        const imageUrl = imgElement.src;
+        const blob = await (await fetch(imageUrl)).blob();
+
+        const file = await convertBlobToFile(blob, 'cropped_image.jpeg', 'image/jpeg');
+
+        async function convertBlobToFile(blob, fileName, fileType) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+
+                reader.onload = function () {
+                    const dataUrl = reader.result;
+
+                    const img = new Image();
+
+                    img.onload = () => {
+                        const canvas = Object.assign(document.createElement('canvas'), {
+                            width: img.width,
+                            height: img.height,
+                        });
+
+                        const context = canvas.getContext('2d');
+                        context.drawImage(img, 0, 0);
+
+                        canvas.toBlob((canvasBlob) => {
+                            resolve(new File([canvasBlob], fileName, { type: fileType }));
+                        }, fileType);
+                        const width2 = img.width;
+                        const height2 = img.height;
+
+                        localStorage.setItem('width2', width2);
+                        localStorage.setItem('height2', height2);
+                    };
+
+                    img.onerror = () => reject(new Error('Failed to load image'));
+
+                    img.src = dataUrl;
+
+                    localStorage.setItem('image2', dataUrl);
+                };
+
+                reader.onerror = function (error) {
+                    reject(new Error('Failed to read Blob as Data URL'));
+                };
+
+                // Read the Blob as Data URL
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            console.log("loading");
+
+            const left = document.getElementById('crop');
+            left.style.visibility = 'hidden';
+
+            const box = document.getElementById('box');
+            // box.style.visibility = 'hidden';
+            var saveBtn = box.querySelector('.btn.save');
+            var downloadBtn = box.querySelector('.btn.download');
+
+            // Hide buttons
+            saveBtn.classList.add('hide');
+            downloadBtn.classList.add('hide');
+
+            // const btn = document.getElementById('btn');
+            // btn.style.visibility = 'hidden';
+
+            const loadingContainer = document.getElementById('loadingcontainer');
+            loadingContainer.style.visibility = 'visible';
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/upload_and_process', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+
+                // Lưu kết quả vào localStorage
+                localStorage.setItem('result', JSON.stringify(data.result));
+                localStorage.setItem('filepath', JSON.stringify(data.filepath));
+                localStorage.setItem('error', JSON.stringify(data.error));
+                console.log(data.result);
+                console.log(data.filepath);
+                console.log(data.error);
+                window.location.href = 'result.html';
+            } catch (error) {
+                console.error('err:', error);
+            }
+        } else {
+            alert('Vui lòng chọn ảnh.');
+        } 
+    });
+
+    async function loadImage(url_image) {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/predict_url?url=${encodeURIComponent(url_image)}`);
+            const blob = await response.blob();
+            const objectURL = URL.createObjectURL(blob);
+            return objectURL;
+        } catch (error) {
+            console.error('Error loading image:', error);
+            throw error;  // Re-throw the error to handle it outside the function if needed
+        }
+    }
+    async function displayImage(url_image, resultImage) {
+        try {
+            // const url_image = localStorage.getItem('url_image');
+
+            if (url_image) {
+                // const resultImage = document.getElementById('resultImage');
+                const objectURL = await loadImage(url_image);
+
+                console.log(objectURL);
+
+                resultImage.src = objectURL;
+
+                // Clean result before
+                result.innerHTML = '';
+
+                // Append new image
+                result.appendChild(resultImage);
+
+                save.classList.remove('hide');
+                options.classList.remove('hide');
+
+                // Init cropper
+                cropper = new Cropper(resultImage, {
+                    aspectRatio: 1,
+                    autoCropArea: 1,
+                    dragMode: 'none', // Ngăn chặn kéo thả bằng tay
+                    cropBoxResizable: false, // Ngăn chặn thay đổi kích thước của crop box
+                });
+
+                const minSize = Math.min(width, height);
+                console.log(minSize);
+                cropper.setCropBoxData({ width: minSize, height: minSize });
+            }
+        } catch (error) {
+            console.error('Error displaying image:', error);
+        }
+    }
+</script>
+<script src="js/now-ui-kit.min.js"></script>
+</body>
+</html>

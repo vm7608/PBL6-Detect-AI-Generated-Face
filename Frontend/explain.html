@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/now-ui-kit.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <title>AI or Not</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="assets/menuIcon.svg" width="20px" height="20px" style="max-width: none !important;">
+    </button>
+    <img src="images/logoMBH.png" width="60" height="60">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="file:///C:/Users/HP/M%C3%A1y%20t%C3%ADnh/WebAIGeneratedFaceDetection/src/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="containerx">
+    <h1 class="display-5 title">Explain model prediction</h1>
+</div>
+<div>
+    <div class="exresult">This image <span class="text-color" id="explainresult"></span></div>
+</div>
+<div class="container">    
+    <div class="leftx">
+        <img id="original" src="" alt=""/>
+            <div class="img-description">Original image</div>
+    </div>
+    <div class="midx">
+        <img id="limeImage" src="" alt=""/>
+        <div class="img-description">Image explained by LIME*</div>
+    </div>
+    <div class="rightx">
+        <img id="gradcamImage" src="" alt=""/>
+        <div class="img-description">Image explained by GradCAM**</div>
+    </div>
+</div>
+
+<div class="containerxx">
+    <p class="subtitlex">*Those regions which are surrounded by a black line are most influential for the complex model’s prediction</p>
+    <p class="subtitlex">**The red-colored areas represent regions most influential for the complex model’s prediction, with deeper shades of red indicating higher influence</p>
+</div>
+
+
+<div class="page_end">
+    <div class="start">
+        <div class="card">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="bot-footer">
+            <img src="images/logoMBH.png" width="150"><br />
+            Copyright © [JACK97] - 2023
+        </div><br/>
+        <div class="nouridio">website designed by <a href="https://cdn.tuoitre.vn/471584752817336320/2023/8/13/f3xiqfpw4aeo-vo-1691881627442514206495-232-0-1306-1718-crop-1691881638057571163265.jpg"> Nobody</a></div>
+    </div>
+</div>
+
+<script>
+    const explainresult = localStorage.getItem('explainresult');
+    const resultDivex = document.getElementById('explainresult');
+    console.log(explainresult);
+    resultDivex.innerText = explainresult ? `${explainresult}` : 'Cant solve';
+
+    const original = localStorage.getItem('original');
+    document.getElementById('original').src = original;
+
+    const lime = localStorage.getItem('lime');
+    document.getElementById('limeImage').src = lime;
+    console.log(lime)
+
+    const gradcam = localStorage.getItem('gradcam');
+    document.getElementById('gradcamImage').src = gradcam;
+    console.log(gradcam)
+
+    localStorage.removeItem('explainresult');
+    localStorage.removeItem('original');
+    localStorage.removeItem('lime');
+    localStorage.removeItem('gradcam');
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/now-ui-kit.min.js"></script>
+</body>
+</html>

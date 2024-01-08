@@ -1,0 +1,628 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #1D1E28;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    border-top: 6px #AD91FF solid !important;
+    font-size: 16px;
+}
+
+.nav-link {
+     font-size: 14px !important;
+     background: transparent !important;
+     font-family: Lato, sans-serif !important;
+     text-transform: capitalize !important;
+ }
+ .nav-link:hover {
+     background: transparent !important;
+     color: #AD91FF !important;
+     font-weight: bold !important;
+ }
+
+ .login-btn {
+     border: 2px solid #AD91FF !important;
+     font-size: 10px !important;
+ }
+ .login-btn:hover {
+     background: #AD91FF !important;
+ }
+.navbar {
+    box-shadow: none !important
+}
+
+.navbar-brand {
+    font-size: 25px !important
+}
+
+.navbar-toggler-icon {
+    color: #fff !important
+}
+
+.btn {
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    visibility: visible;
+}
+
+.btncrop {
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.btn-primary {
+    background-color: #AD91FF!important
+}
+.btn-secondary {
+    background-color: #2C2F33 !important
+}
+.heading {
+    padding: 160px 50px !important;
+    color: #fff !important;
+    /* background-image: url("../assets/wavy-purple-by-nouridio.svg") !important; */
+    background-color: #1d1e28;
+    background-position: bottom !important;
+    background-size: 300% !important;
+    background-repeat: no-repeat !important;
+}
+
+.icon_drag_drop {
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+.title {
+    line-height: 90px !important;
+    margin-bottom: -2px !important;
+    font-size: 50px !important;
+}
+
+.title_right {
+    line-height: 90px !important;
+    margin-bottom: -20px !important;
+    font-size: 35px !important;
+    text-align: center;
+}
+
+.title_result {
+    line-height: 90px !important;
+    margin-bottom: 30px !important;
+    font-size: 50px !important;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 22px !important;
+    font-family: 'Lato', sans-serif;
+}
+
+.subtitlex {
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 15px !important;
+    font-family: 'Lato', sans-serif;
+    margin-top: -13px
+}
+
+.subtitle_right_mid {
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 20px !important;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin-bottom: 20px !important;
+}
+
+.subtitle_right {
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 15px !important;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+.subtitle_down {
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 13px !important;
+    font-family: 'Lato', sans-serif;
+    margin-top: 10px !important;
+}
+.text-color {
+    color: #AD91FF;
+}
+
+.features {
+    text-align: center !important;
+    background: #AD91FF !important;
+    padding: 60px 50px !important;
+    /* background-image: url("../assets/wavy-dark-by-nouridio.svg") !important; */
+    background-color: #1d1e28;
+    background-position: bottom !important;
+    background-size: 200% !important;
+    background-repeat: no-repeat !important;
+}
+.features .title {
+    font-size: 40px !important;
+    color: #ffffff !important;
+    line-height: 70px !important;
+}
+
+.features .subtitle {
+    font-size: 20px !important;
+    color: #a2a8bd;
+}
+
+.features .card-body {
+    text-align: left !important;
+}
+
+.features .card-title {
+    margin: 0 0 -3px !important;
+}
+.cards {
+    margin-top: 30px !important;
+}
+
+.card {
+    border-radius: 5px !important;
+    box-shadow: none !important;
+}
+
+.card-title {
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    color: #AD91FF !important;
+}
+
+.statistics {
+    text-align: center !important;
+    padding-top: 300px !important;
+}
+
+.statistics .card-body{
+    padding: 0 !important;
+    height: 280 !important;
+    width: 332 !important;
+    max-height: 280 !important;
+    max-width: 332 !important;
+}
+
+.statistics .title {
+    font-size: 40px !important;
+    color: #ffffff !important;
+    line-height: 70px !important;
+}
+
+.statistics .title_result {
+    font-size: 40px !important;
+    color: #ffffff !important;
+    line-height: 70px !important;
+}
+
+.statistics .subtitle {
+    font-size: 20px !important;
+    color: #a2a8bd;
+}
+
+.card.statistic {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #f7f7f7 !important;
+}
+
+.page_end {
+    background-image: url("../assets/wavy-light-by-nouridio.svg") !important;
+    background-position: bottom !important;
+    background-size: 200% !important;
+    background-repeat: no-repeat !important;
+}
+.start {
+    padding: 60px 50px !important
+}
+
+.start .card {
+    background: transparent !important;
+    color: #f6f9ff !important;
+}
+
+.features .card {
+    background: #1D1E28;
+    border-radius: 22px !important;
+    border: 4px solid #AD91FF;
+}
+.features .card-text {
+color: rgba(255, 255, 255, 0.46) !important
+}
+
+.features .card-body {
+    padding: 40px 40px 40px 30px !important;
+}
+
+.navbar-toggler-icon {
+    color: #fff !important
+}
+
+.footer {
+    text-align: center !important;
+    padding: 5px 6px !important;
+    color: #ecf2ff;
+    padding: 30px 30px !important
+}
+
+.footer .nouridio {
+    font-family: 'Montserrat' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 5px !important;
+    letter-spacing: 0.15em !important;
+    font-variant: small-caps !important;
+}
+
+.footer .nouridio a {
+    color: #AD91FF !important;
+    text-decoration: none !important;
+}
+
+.footer .bot-footer {
+    text-align: center !important;
+    color: #a2a8bd !important
+}
+
+.container {
+    display: flex;
+    padding: 10px 60px 130px !important;
+    color: #fff !important;
+    /* background-image: url("../assets/wavy-purple-by-nouridio.svg") !important; */
+    background-color: #1d1e28;
+    background-position: bottom !important;
+    background-size: 200% !important;
+    background-repeat: no-repeat !important;
+}
+
+.containerxx {
+    /* display: flex; */
+    margin-top: -80px;
+    margin-left: 90px;
+    margin-bottom: 30px;
+    color: #fff !important;
+    /* background-image: url("../assets/wavy-purple-by-nouridio.svg") !important; */
+    background-color: #1d1e28;
+    /* background-position: bottom !important; */
+    /* background-size: 200% !important; */
+    /* background-repeat: no-repeat !important; */
+}
+
+.containerx {
+    display: flex;
+    align-items: center; /* Căn theo chiều dọc */
+    justify-content: center; /* Căn theo chiều ngang */
+    /* padding: 0px 30px !important; */
+    margin-top: -70px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 10px !important;
+    color: #fff !important;
+    background-color: #1d1e28;
+    background-position: middle !important;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+}
+
+.left {
+    flex: 1;
+    padding: 20px;
+    visibility: visible;
+}
+
+.right {
+    flex: 1;
+    padding: 20px 60px !important;
+    height: auto;
+    min-height: 17.25rem;
+    cursor: pointer;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.75rem 1.5rem;
+    display: flex;
+}
+
+.right2 {
+    flex: 1;
+    padding-right: 20px;
+    visibility: visible;
+}
+
+.right img {
+    width: 100%; /* Đảm bảo ảnh lấp đầy phần bên phải */
+    height: auto;
+}
+
+.hero-home_drop-zone-divider {
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+}
+
+.hero-home_drop-zone-divider-line {
+    height: 1px;
+    background-color: rgba(255, 255, 255, .2);
+    flex: 1;
+}
+
+.hero-home_drop-zone-divider-text {
+    text-transform: uppercase;
+    flex: none;
+    margin-left: .9375rem;
+    margin-right: .9375rem;
+    line-height: 1;
+}
+
+.textField {
+    width: 337px; /* Đặt kích thước chiều rộng */
+    height: 45px; /* Đặt kích thước chiều cao */
+    background-color: #1D1E28; /* Đặt màu nền */
+    color: rgba(255, 255, 255, 0.685); /* Đặt màu chữ */
+    border-radius: 10px; /* Đặt độ cong góc */
+    border: 1px solid rgba(255, 255, 255, .2); /* Thêm viền 2px, màu trắng */
+
+}
+
+.highlight {
+    flex: 1;
+    padding: 20px 60px !important;
+    cursor: pointer;
+    border: 1px dashed #ffffff33;
+    max-width: 512px; 
+    max-height: 512px;
+    overflow: hidden;
+}
+  
+.highlight:hover {
+    border-color: #e3dede; 
+}
+
+.image {
+    width: 45%;
+    /* height: 40%; */
+}
+
+.image img {
+    max-width: 190%; /* Giới hạn chiều rộng tối đa */
+    height: auto; /* Tự động tính toán chiều cao tương ứng */
+}
+
+.buttons {
+    display: flex;
+    visibility: visible;
+}
+
+.like-button {
+    border: 2px solid #adff00 !important;
+    background-color: #1D1E28;
+    color: #adff00;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 20px !important;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.dislike-button {
+    border: 2px solid #ff4651 !important;
+    background-color: #1D1E28;
+    color: #ff4651;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 20px !important;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.explain-button {
+    border: 2px solid rgb(42, 162, 248) !important;
+    background-color: #1D1E28;
+    color: rgb(42, 162, 248);
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 20px !important;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.like-button:hover {
+    background-color: #adff00;
+    color: #1D1E28;
+    border: 2px;
+}
+
+.dislike-button:hover {
+    background-color: #ff4651;
+    color: #1D1E28;
+    border: 2px;
+}
+
+.explain-button:hover {
+    background-color: rgb(42, 162, 248);
+    color: #1D1E28;
+    border: 2px;
+}
+
+.loader-container {
+    flex: 1;
+    text-align: center; /* Căn giữa nội dung */
+    visibility: hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.loader {
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #AD91FF;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.processing-text {
+    margin-top: 10px; /* Khoảng cách với loading spinner */
+    font-size: 18px;
+    margin: auto;
+    margin-top: 370px;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.lowQualityText {
+    /* color: red;
+    font-size: 16px; */
+    /* Add other styles as needed */
+    color: rgba(255, 255, 255, 0.685) !important;
+    font-size: 17px !important;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Crop image */
+.page {
+	margin: 1em auto;
+	max-width: 768px;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	height: 100%;
+    visibility: visible;
+}
+
+.box {
+	padding: 0.5em;
+	width: 100%;
+	margin:0.5em;
+    visibility: visible;
+}
+
+.box-2 {
+	padding: 0.5em;
+	width: calc(100%/2 - 1em);
+}
+
+.options label,
+.options input{
+	width:4em;
+	padding:0.5em 1em;
+}
+/* .btn{
+	background:white;
+	color:black;
+	border:1px solid black;
+	padding: 0.5em 1em;
+	text-decoration:none;
+	margin:0.8em 0.3em;
+	display:inline-block;
+	cursor:pointer;
+} */
+
+.hide {
+	display: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+.save {
+    color: #ffffff; /* Màu chữ cho nút Save */
+    background-color: #AD91FF; /* Màu nền cho nút Save */
+}
+
+.download {
+    color: #ffffff; /* Màu chữ cho nút Next */
+    background-color: #29a75b; /* Màu nền cho nút Next */
+}
+
+.container .leftx {
+    width: 33%;
+    text-align: center;
+    width: 300px; 
+    height: 300px; 
+}
+  
+.container .midx {
+    width: 33%; 
+    text-align: center;
+    width: 300px;
+    height: 300px; 
+    margin-left: 50px;
+}
+
+.container .rightx {
+    width: 33%;
+    text-align: center;
+    width: 300px; 
+    height: 300px; 
+    margin-left: 50px;
+}
+
+.container .leftx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resizes the image to cover the entire div */
+}
+
+.container .midx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resizes the image to cover the entire div */
+}
+
+.container .rightx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resizes the image to cover the entire div */
+}
+
+.red-text {
+    color: red;
+}
+
+.purple-text {
+    color: purple;
+}
+
+.exresult {
+    color: white;
+    /* display: inline-block; */
+    text-align: center;
+    font-size: 17px;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}

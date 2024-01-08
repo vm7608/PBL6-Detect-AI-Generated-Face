@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/now-ui-kit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <title>AI or Not</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="assets/menuIcon.svg" width="20px" height="20px" style="max-width: none !important;">
+    </button>
+    <img src="images/logoMBH.png" width="60" height="60">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="file:///C:/Users/HP/M%C3%A1y%20t%C3%ADnh/WebAIGeneratedFaceDetection/src/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="loader-container" id="loadingcontainer">
+        <div class="loader"></div>
+        <div class="processing-text">Explaining...</div>
+    </div>
+    <div id="left" class="left">
+        <div class="image">
+            <img id="resultImage" src=""/>
+        </div>
+    </div>
+    <div id="right" class="right2">
+        <h1 class="display-5 title_result"><strong>This image<span class="text-color"><div id="result"></div></span></strong></h1>
+        <div id="btn" class="buttons">
+            <button class="like-button" onclick="sendFeedback(1)">
+                <i class="fas fa-thumbs-up"></i> CORRECT
+            </button>
+            <button class="dislike-button" onclick="sendFeedback(0)">
+                <i class="fas fa-thumbs-down"></i> INCORRECT
+            </button>
+            <button class="explain-button" onclick="explain()">
+                <i class="fa-solid fa-question"></i> EXPLAIN
+            </button>
+        </div>
+        <br />
+        <div id="feedback-message" style="display: none;">
+            Thanks for your feedback!
+        </div>      
+        <div id="hero-home_drop-zone-divider" class="hero-home_drop-zone-divider">
+            <div class="hero-home_drop-zone-divider-line"></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="page_end">
+    <div class="footer">
+        <div class="bot-footer">
+            <img src="images/logoMBH.png" width="150"><br />
+            Copyright © [JACK97] - 2023
+        </div><br/>
+        <div class="nouridio">website designed by <a href="https://cdn.tuoitre.vn/471584752817336320/2023/8/13/f3xiqfpw4aeo-vo-1691881627442514206495-232-0-1306-1718-crop-1691881638057571163265.jpg"> Nobody</a></div>
+    </div>
+</div>
+
+<script>
+    const result = JSON.parse(localStorage.getItem('result'));
+    const resultDiv = document.getElementById('result');
+    console.log(result);
+    
+    localStorage.setItem('explainresult', result);
+    resultDiv.innerText = result ? `${result}` : 'Cant solve';
+
+    const image_path = JSON.parse(localStorage.getItem('filepath'));
+    console.log(image_path);
+
+    const url = JSON.parse(localStorage.getItem('url'));
+    const base64Image = localStorage.getItem('image2');
+    const width = localStorage.getItem('width2');
+    const height = localStorage.getItem('height2');
+
+    const error = JSON.parse(localStorage.getItem('error'));
+    console.log(error); 
+    if (error != "none" && error != "mtcnn" && error != "mtcnn2") {
+        const left = document.getElementById('left');
+        left.style.visibility = 'hidden';
+
+        const right = document.getElementById('right');
+        right.style.visibility = 'hidden';
+        alert(error);
+        window.location.href = 'index.html';
+    }
+
+    if (error == "mtcnn" || error == "mtcnn2") {
+        const btn = document.getElementById('btn');
+        btn.style.visibility = 'hidden';
+    }
+
+    if (url) {
+        const resultImage = document.getElementById('resultImage');
+        resultImage.src = url;
+    } else if (base64Image) {
+        const resultImage = document.getElementById('resultImage');
+        resultImage.src = base64Image;
+    }
+
+    console.log(width);
+    console.log(height);
+    if (width < 256 || height < 256) {
+        var rightDiv = document.getElementById('right');
+        var newText = document.createElement('p');
+        newText.textContent = "This image is of low quality so it affects the prediction results";
+        newText.className = 'lowQualityText';
+        newText.style.fontWeight = 'bold';
+        rightDiv.appendChild(newText);
+    }   
+    
+    localStorage.removeItem('image2');
+    localStorage.removeItem('result');
+    localStorage.removeItem('url');
+    localStorage.removeItem('filepath');
+    localStorage.removeItem('error');
+
+    async function sendFeedback(fb) {
+        const feedbackData = {
+            feedback: fb,
+            image_path: image_path
+        };
+
+        const response = await fetch('http://127.0.0.1:8000/submit_feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(feedbackData)
+        });
+
+        const result = await response.json();
+        console.log(result);
+        alert("Thanks for your feedback!")
+        const feedbackMessage = document.getElementById('feedback-message');
+        feedbackMessage.style.display = 'block';
+    }
+
+    async function explain() {
+        const left = document.getElementById('left');
+        left.style.visibility = 'hidden';
+
+        const right = document.getElementById('right');
+        right.style.visibility = 'hidden';
+
+        const btn = document.getElementById('btn');
+        btn.style.visibility = 'hidden';
+
+        const loadingContainer = document.getElementById('loadingcontainer');
+        loadingContainer.style.visibility = 'visible';
+
+        localStorage.setItem('original', base64Image);
+        try {
+                const response = await fetch(`http://127.0.0.1:8000/explain?file_path=${image_path}`);
+                
+                const result = await response.json();
+                const file_path_lime = result.file_path_lime;
+                const file_path_gradcam = result.file_path_gradcam;
+                localStorage.setItem('lime', file_path_lime);
+                console.log(file_path_lime)
+                localStorage.setItem('gradcam', file_path_gradcam);
+                console.log(file_path_gradcam)
+                window.location.href = 'explain.html';
+            } catch (error) {
+                console.error('Error:', error);
+            }
+    }
+
+    function convertBlobToBase64(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onerror = reject;
+            reader.onload = () => {
+                resolve(reader.result.split(',')[1]);
+            };
+            reader.readAsDataURL(blob);
+        });
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> <!-- Thư viện Font Awesome -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/now-ui-kit.min.js"></script>
+</body>
+</html>

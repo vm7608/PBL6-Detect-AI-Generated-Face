@@ -1,1 +1,1 @@
-# PBL6---Detect-AI-Generated-Face
+# PBL6 - Detect AI Generated Face
